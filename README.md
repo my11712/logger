@@ -114,50 +114,5 @@ Logger.addLogAdapter(new DiskLogAdapter());
             .build();
     Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
 ```
-
-Add custom tag to Csv format strategy
-```java
-FormatStrategy formatStrategy = CsvFormatStrategy.newBuilder()
-  .tag("custom")
-  .build();
   
-Logger.addLogAdapter(new DiskLogAdapter(formatStrategy));
-```
-
-### How it works
-<img src='https://github.com/orhanobut/logger/blob/master/art/how_it_works.png'/>
-
-
-### More
-- Use filter for a better result. PRETTY_LOGGER or your custom tag
-- Make sure that wrap option is disabled
-- You can also simplify output by changing settings.
-
-<img src='https://github.com/orhanobut/logger/blob/master/art/logcat_options.png'/>
-
-- Timber Integration
-```java
-// Set methodOffset to 5 in order to hide internal method calls
-Timber.plant(new Timber.DebugTree() {
-  @Override protected void log(int priority, String tag, String message, Throwable t) {
-    Logger.log(priority, tag, message, t);
-  }
-});
-```
-
-### License
-<pre>
-Copyright 2018 Orhan Obut
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
 </pre>
