@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
       }
     });
 
-    Logger.addLogAdapter(new DiskLogAdapter());
+
 
 
     Logger.w("no thread info and only 1 method");
@@ -93,7 +93,8 @@ public class MainActivity extends Activity {
 
     Logger.w("my log message with my tag");
 
-
+    //默认日志储存
+      Logger.addLogAdapter(new DiskLogAdapter());
 
     //自定义的日志存储,默认储存在/sdcard/JYT/Log文件夹,默认最大储存60个日志文件，自动切换日志文件名称
     MyDiskCsvFormatStrategy myDiskLogStrategy = MyDiskCsvFormatStrategy.newBuilder()
