@@ -11,7 +11,7 @@
             .setLogFileMax(30)//设置日志文件最大存储的个数
             .build();
     Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
-
+```
 
 ### Logger
 Simple, pretty and powerful logger for android
