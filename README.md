@@ -1,7 +1,3 @@
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Logger-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1658) [![](https://img.shields.io/badge/AndroidWeekly-%23147-blue.svg)](http://androidweekly.net/issues/issue-147)
-[![Join the chat at https://gitter.im/orhanobut/logger](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/orhanobut/logger?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) <a href="http://www.methodscount.com/?lib=com.orhanobut%3Alogger%3A2.0.0"><img src="https://img.shields.io/badge/Methods and size-198 | 18 KB-e91e63.svg"/></a> [![Build Status](https://travis-ci.org/orhanobut/logger.svg?branch=master)](https://travis-ci.org/orhanobut/logger)
-
-<img align="right" src='https://github.com/orhanobut/logger/blob/master/art/logger-logo.png' width='128' height='128'/>
 
 ### 3.0.0 新增设置日志按照日期自动存储
 ##### setLogPath 设置日志存储的文件夹
@@ -78,11 +74,11 @@ Logger.xml(XML_CONTENT);
 ### Advanced
 ```java
 FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
-  .showThreadInfo(false)  // (Optional) Whether to show thread info or not. Default true
-  .methodCount(0)         // (Optional) How many method line to show. Default 2
-  .methodOffset(7)        // (Optional) Hides internal method calls up to offset. Default 5
-  .logStrategy(customLog) // (Optional) Changes the log strategy to print out. Default LogCat
-  .tag("My custom tag")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+  .showThreadInfo(false)  // (可选)是否打印线程信息,默认打印
+  .methodCount(0)         // (可选) How many method line to show. Default 2
+  .methodOffset(7)        // (可选) Hides internal method calls up to offset. Default 5
+  .logStrategy(customLog) // (可选) Changes the log strategy to print out. Default LogCat
+  .tag("My custom tag")   // (可选) Global tag for every log. Default PRETTY_LOGGER
   .build();
 
 Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
@@ -100,8 +96,7 @@ Logger.addLogAdapter(new AndroidLogAdapter() {
 });
 ```
 
-### Save logs to the file
-//TODO: More information will be added later
+### 保存日志到文件
 ```java
 //普通的日志打印,只保存在一个日志文件里
 Logger.addLogAdapter(new DiskLogAdapter());
@@ -115,4 +110,4 @@ Logger.addLogAdapter(new DiskLogAdapter());
     Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
 ```
   
-</pre>
+ 
