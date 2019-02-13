@@ -52,12 +52,12 @@ Logger.i("information");
 Logger.wtf("What a Terrible Failure");
 ```
 
-String format arguments are supported
+打印字符串
 ```java
 Logger.d("hello %s", "world");
 ```
 
-Collections are supported (only available for debug logs)
+打印集合
 ```java
 Logger.d(MAP);
 Logger.d(SET);
@@ -65,7 +65,7 @@ Logger.d(LIST);
 Logger.d(ARRAY);
 ```
 
-Json and Xml support (output will be in debug level)
+打印Json和XML (output will be in debug level)
 ```java
 Logger.json(JSON_CONTENT);
 Logger.xml(XML_CONTENT);
