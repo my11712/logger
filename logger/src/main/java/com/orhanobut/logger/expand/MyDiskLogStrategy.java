@@ -3,6 +3,7 @@ package com.orhanobut.logger.expand;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.LogStrategy;
 
@@ -28,7 +29,7 @@ public class MyDiskLogStrategy implements LogStrategy {
     }
 
     @Override
-    public void log(int level, String tag, String message) {
+    public void log(int level, String tag, @NonNull String message) {
         // do nothing on the calling thread, simply pass the tag/msg to the background thread
         handler.sendMessage(handler.obtainMessage(level, message));
     }
@@ -49,9 +50,7 @@ public class MyDiskLogStrategy implements LogStrategy {
             return simpleDateFormat.format(new Date());
         }
 
-        private void writeLog() {
 
-        }
 
 
         @SuppressWarnings("checkstyle:emptyblock")
@@ -119,6 +118,7 @@ public class MyDiskLogStrategy implements LogStrategy {
             }
 
             if (existingFile != null) {
+                //如果当前的日志文件大小大于最大的size，则返回创建的文件
                 if (existingFile.length() >= maxFileSize) {
                     return newFile;
                 }

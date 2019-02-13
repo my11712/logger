@@ -95,11 +95,11 @@ public class MainActivity extends Activity {
 
 
 
-    //自定义的日志存储,默认储存在/sdcard/JYT/Log文件夹,默认最大储存60个日志文件
+    //自定义的日志存储,默认储存在/sdcard/JYT/Log文件夹,默认最大储存60个日志文件，自动切换日志文件名称
     MyDiskCsvFormatStrategy myDiskLogStrategy = MyDiskCsvFormatStrategy.newBuilder()
             .tag("APP")
-            .setLogPath(Environment.getExternalStorageDirectory().getPath()+File.separator+"11")
-            .setLogFileMax(30)
+            .setLogPath(Environment.getExternalStorageDirectory().getPath()+File.separator+"11")//设置日志存储的文件夹
+            .setLogFileMax(30)//设置日志文件最大存储的个数
             .build();
     Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
 
