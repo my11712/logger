@@ -22,7 +22,15 @@ Simple, pretty and powerful logger for android
 ### Setup
 Download
 ```groovy
-implementation 'com.orhanobut:logger:3.0.0'
+
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+ 
+implementation 'com.github.my11712:logger:3.0.0'
 ```
 
 Initialize
