@@ -4,8 +4,8 @@
 <img align="right" src='https://github.com/orhanobut/logger/blob/master/art/logger-logo.png' width='128' height='128'/>
 
 ### 3.0.0 新增设置日志按照日期自动存储
-#### setLogPath 设置日志存储的文件夹
-#### setLogFileMax 设置日志文件最大存储的个数
+##### setLogPath 设置日志存储的文件夹
+##### setLogFileMax 设置日志文件最大存储的个数
 #
 ```java
  MyDiskCsvFormatStrategy myDiskLogStrategy = MyDiskCsvFormatStrategy.newBuilder()
