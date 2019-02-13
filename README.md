@@ -89,9 +89,9 @@ Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 ```
 
 ### Loggable
-Log adapter checks whether the log should be printed or not by checking this function.
-If you want to disable/hide logs for output, override `isLoggable` method. 
-`true` will print the log message, `false` will ignore it.
+检查是否应打印日志
+如果要隐藏或者不打印日志, override `isLoggable` 方法. 
+`true` 表示打印日志, `false` 不打印日志.
 ```java
 Logger.addLogAdapter(new AndroidLogAdapter() {
   @Override public boolean isLoggable(int priority, String tag) {
