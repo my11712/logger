@@ -3,13 +3,34 @@
 
 <img align="right" src='https://github.com/orhanobut/logger/blob/master/art/logger-logo.png' width='128' height='128'/>
 
+### 3.0.0 新增设置日志按照日期自动存储
+##### setLogPath 设置日志存储的文件夹
+##### setLogFileMax 设置日志文件最大存储的个数
+#
+```java
+ MyDiskCsvFormatStrategy myDiskLogStrategy = MyDiskCsvFormatStrategy.newBuilder()
+            .tag("APP")
+            .setLogPath(Environment.getExternalStorageDirectory().getPath()+File.separator+"11")//设置日志存储的文件夹
+            .setLogFileMax(30)//设置日志文件最大存储的个数
+            .build();
+    Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
+```
+
 ### Logger
 Simple, pretty and powerful logger for android
 
 ### Setup
 Download
 ```groovy
-implementation 'com.orhanobut:logger:2.2.0'
+
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+ 
+implementation 'com.github.my11712:logger:3.0.0'
 ```
 
 Initialize
