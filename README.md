@@ -91,7 +91,7 @@ Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 ### Loggable
 检查是否应打印日志
 如果要隐藏或者不打印日志, override `isLoggable` 方法. 
-`true` 表示打印日志, `false` 不打印日志.
+返回 `true` 表示打印日志, 返回`false` 不打印日志.
 ```java
 Logger.addLogAdapter(new AndroidLogAdapter() {
   @Override public boolean isLoggable(int priority, String tag) {
@@ -103,7 +103,16 @@ Logger.addLogAdapter(new AndroidLogAdapter() {
 ### Save logs to the file
 //TODO: More information will be added later
 ```java
+//普通的日志打印,只保存在一个日志文件里
 Logger.addLogAdapter(new DiskLogAdapter());
+
+//按照日期保存日志文件
+ MyDiskCsvFormatStrategy myDiskLogStrategy = MyDiskCsvFormatStrategy.newBuilder()
+            .tag("APP")
+            .setLogPath(Environment.getExternalStorageDirectory().getPath()+File.separator+"11")//设置日志存储的文件夹
+            .setLogFileMax(30)//设置日志文件最大存储的个数
+            .build();
+    Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
 ```
 
 Add custom tag to Csv format strategy
