@@ -4,7 +4,13 @@
 <img align="right" src='https://github.com/orhanobut/logger/blob/master/art/logger-logo.png' width='128' height='128'/>
 ### 新增
 拓展了原框架的本地储存功能,
-
+```java
+ MyDiskCsvFormatStrategy myDiskLogStrategy = MyDiskCsvFormatStrategy.newBuilder()
+            .tag("APP")
+            .setLogPath(Environment.getExternalStorageDirectory().getPath()+File.separator+"11")//设置日志存储的文件夹
+            .setLogFileMax(30)//设置日志文件最大存储的个数
+            .build();
+    Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
 
 
 ### Logger
