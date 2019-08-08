@@ -106,6 +106,7 @@ Logger.addLogAdapter(new DiskLogAdapter());
             .tag("APP")
             .setLogPath(Environment.getExternalStorageDirectory().getPath()+File.separator+"11")//设置日志存储的文件夹
             .setLogFileMax(30)//设置日志文件最大存储的个数
+	    .setLogFileMax(20*1024*1024)//设置单个文件的最大大小，大于该值切换新的日志文件，默认20兆
             .build();
     Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
 ```
