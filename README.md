@@ -1,18 +1,3 @@
-
-### 3.0.0 新增设置日志按照日期自动存储
-##### setLogPath 设置日志存储的文件夹
-##### setLogFileMax 设置日志文件最大存储的个数
-#
-```java
- MyDiskCsvFormatStrategy myDiskLogStrategy = MyDiskCsvFormatStrategy.newBuilder()
-            .tag("APP")
-            .setLogPath(Environment.getExternalStorageDirectory().getPath()+File.separator+"11")//设置日志存储的文件夹
-            .setLogFileMax(30)//设置日志文件最大存储的个数
-            .build();
-    Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
-```
- 
-
 ### Setup
 Download
 ```groovy
@@ -56,7 +41,7 @@ Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 
  
 
-#### 2、保存日志到文件
+#### 2、配置日志到文件
 ```java
 //普通的日志打印,只保存在一个日志文件里
 Logger.addLogAdapter(new DiskLogAdapter());
@@ -83,7 +68,7 @@ Logger.addLogAdapter(new AndroidLogAdapter() {
 });
 ```
 
-### 4、打印日志
+#### 4、打印日志
  
  
 ```java
