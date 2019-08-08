@@ -9,7 +9,7 @@ allprojects {
 		}
 	}
  
-implementation 'com.github.my11712:logger:3.0.0'
+implementation 'com.github.my11712:logger:3.0.2'
 ``` 
 ### 初始化
 #### 1、配置Logcat打印日志
