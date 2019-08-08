@@ -83,4 +83,5 @@ Logger.xml(XML_CONTENT);
 
 ### Output
 <img src='https://github.com/orhanobut/logger/blob/master/art/logger_output.png'/>
+
 <img src='https://github.com/orhanobut/logger/blob/master/art/20190808161403.png'/>
