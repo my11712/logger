@@ -45,13 +45,11 @@ public class MainActivity extends Activity {
     Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy2));
     Logger.w("000000000000000000000000000000000000000000");
     Logger.clearLogAdapters();
-//    Logger.addLogAdapter(new AndroidLogAdapter());
 
     FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
             .showThreadInfo(true)  // (可选)是否打印线程信息,默认打印
             .methodCount(4)         // (可选)显示打印线程的方法行数，默认为2，即打印日志的文件一层，加父类一层
             .methodOffset(0)        //打印方法的线程信息时，打印的方法开始的的层数，和methodCount配合使用
-
             .tag("测试")   // (可选) 每个日志的全局标记。默认PRETTY_LOGGER
             .build();
 
@@ -84,7 +82,7 @@ public class MainActivity extends Activity {
             .setLogFileMax(5)//设置日志文件最大存储的个数
             .setLogFileMax(20*1024*1024)
             .build();
-//    Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
+    Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
 
 
 //    Logger.d("写入sdcard");
