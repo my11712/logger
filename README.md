@@ -16,9 +16,8 @@ implementation 'com.github.my11712:logger:3.0.0'
 ```java
 FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
   .showThreadInfo(false)  // (可选)是否打印线程信息,默认打印
-  .methodCount(0)         // (可选)显示的方法行数，默认为2
-  .methodOffset(7)        // (可选)隐藏内部方法调用到偏移量，默认为5
-  .logStrategy(customLog) // (可选) 更改要打印的日志策略。
+  .methodCount(2)         // (可选)显示的方法行数，默认为2
+  .methodOffset(0)        // (可选)隐藏内部方法调用到偏移量，默认为5
   .tag("My custom tag")   // (可选) 每个日志的全局标记。默认PRETTY_LOGGER
   .build();
 
