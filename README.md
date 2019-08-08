@@ -84,4 +84,4 @@ Logger.xml(XML_CONTENT);
 ### Output
 <img src='https://github.com/my11712/logger/blob/master/art/logger_output.png'/>
 
-<img src='https://github.com/my11712/logger/blob/master/art/20190808161403.png'/>
+<img src='https://github.com/my11712/logger/blob/master/art/20190808162745.png'/>
