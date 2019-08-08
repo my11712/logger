@@ -10,21 +10,7 @@ allprojects {
 	}
  
 implementation 'com.github.my11712:logger:3.0.0'
-```
-
-Initialize
-```java
-Logger.addLogAdapter(new AndroidLogAdapter());
-```
-And use
-```java
-Logger.d("hello");
-```
-
-### Output
-<img src='https://github.com/orhanobut/logger/blob/master/art/logger_output.png'/>
-
- 
+``` 
 ### 初始化
 #### 1、配置Logcat打印日志
 ```java
@@ -43,10 +29,6 @@ Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 
 #### 2、配置日志到文件
 ```java
-//普通的日志打印,只保存在一个日志文件里
-Logger.addLogAdapter(new DiskLogAdapter());
-
-//按照日期保存日志文件
  MyDiskCsvFormatStrategy myDiskLogStrategy = MyDiskCsvFormatStrategy.newBuilder()
             .tag("APP")
             .setLogPath(Environment.getExternalStorageDirectory().getPath()+File.separator+"11")//设置日志存储的文件夹
@@ -98,3 +80,6 @@ Logger.d(ARRAY);
 Logger.json(JSON_CONTENT);
 Logger.xml(XML_CONTENT);
 ```
+
+### Output
+<img src='https://github.com/orhanobut/logger/blob/master/art/logger_output.png'/>
