@@ -3,6 +3,8 @@ package com.orhanobut.logger;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.nio.charset.Charset;
+
 import static com.orhanobut.logger.Utils.checkNotNull;
 
 /**
@@ -90,17 +92,17 @@ public class PrettyFormatStrategy implements FormatStrategy {
     logHeaderContent(priority, tag, methodCount);
 
     //get bytes of message with system's default charset (which is UTF-8 for Android)
-    byte[] bytes = message.getBytes();
+    byte[] bytes = message.getBytes(Charset.forName("UTF-8"));
     int length = bytes.length;
     if (length <= CHUNK_SIZE) {
-      if (methodCount > 0) {
+      if (methodCount > 0 && showThreadInfo) {
         logDivider(priority, tag);
       }
       logContent(priority, tag, message);
       logBottomBorder(priority, tag);
       return;
     }
-    if (methodCount > 0) {
+    if (methodCount > 0 && showThreadInfo) {
       logDivider(priority, tag);
     }
     for (int i = 0; i < length; i += CHUNK_SIZE) {
@@ -121,6 +123,8 @@ public class PrettyFormatStrategy implements FormatStrategy {
     if (showThreadInfo) {
       logChunk(logType, tag, HORIZONTAL_LINE + " Thread: " + Thread.currentThread().getName());
       logDivider(logType, tag);
+    }else{
+      return;
     }
     String level = "";
 

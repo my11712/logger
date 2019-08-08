@@ -34,9 +34,43 @@ public class MainActivity extends Activity {
 
 
 
+    FormatStrategy formatStrategy2 = PrettyFormatStrategy.newBuilder()
+            .showThreadInfo(false)  // (可选)是否打印线程信息,默认打印
+            .methodCount(2)         // (可选)显示打印线程的方法行数，默认为2，即打印日志的文件一层，加父类一层
+            .methodOffset(1)        //打印方法的线程信息时，打印的方法开始的的层数，和methodCount配合使用
+
+            .tag("测试")   // (可选) 每个日志的全局标记。默认PRETTY_LOGGER
+            .build();
+
+    Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy2));
+    Logger.w("000000000000000000000000000000000000000000");
+    Logger.clearLogAdapters();
+//    Logger.addLogAdapter(new AndroidLogAdapter());
+
+    FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+            .showThreadInfo(true)  // (可选)是否打印线程信息,默认打印
+            .methodCount(4)         // (可选)显示打印线程的方法行数，默认为2，即打印日志的文件一层，加父类一层
+            .methodOffset(0)        //打印方法的线程信息时，打印的方法开始的的层数，和methodCount配合使用
+
+            .tag("测试")   // (可选) 每个日志的全局标记。默认PRETTY_LOGGER
+            .build();
+
+    Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
+    Logger.w("1111111111111111111111111111");
+
+    Logger.clearLogAdapters();
 
 
+    FormatStrategy formatStrategy1 = PrettyFormatStrategy.newBuilder()
+            .showThreadInfo(true)  // (可选)是否打印线程信息,默认打印
+            .methodCount(2)         // (可选)显示打印线程的方法行数，默认为2，即打印日志的文件一层，加父类一层
+            .methodOffset(1)        //打印方法的线程信息时，打印的方法开始的的层数，和methodCount配合使用
 
+            .tag("测试")   // (可选) 每个日志的全局标记。默认PRETTY_LOGGER
+            .build();
+
+    Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy1));
+    Logger.w("222222222222222222222222222222");
 
 
 
@@ -48,31 +82,32 @@ public class MainActivity extends Activity {
             .tag("APP")
             .setLogPath(Environment.getExternalStorageDirectory().getPath()+File.separator+"11")//设置日志存储的文件夹
             .setLogFileMax(5)//设置日志文件最大存储的个数
+            .setLogFileMax(20*1024*1024)
             .build();
-    Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
+//    Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
 
 
-    Logger.d("写入sdcard");
-    Logger.d("测试-------------------");
+//    Logger.d("写入sdcard");
+//    Logger.d("测试-------------------");
 
 
 
-    Logger.w("1111111111111111111111111111");
-    Logger.wtf("22222222222222222222222222");
-
-    Logger.i("no thread info and method info");
-
-    Logger.t("tag").e("Custom tag for only one use");
-
-    Logger.json("{ \"key\": 3, \"value\": something}");
-
-    Logger.d(Arrays.asList("foo", "bar"));
-
-    Map<String, String> map = new HashMap<>();
-    map.put("key", "value");
-    map.put("key1", "value2");
-
-    Logger.d(map);
+//    Logger.w("1111111111111111111111111111");
+//    Logger.wtf("22222222222222222222222222");
+//
+//    Logger.i("no thread info and method info");
+//
+//    Logger.t("tag").e("Custom tag for only one use");
+//
+//    Logger.json("{ \"key\": 3, \"value\": something}");
+//
+//    Logger.d(Arrays.asList("foo", "bar"));
+//
+//    Map<String, String> map = new HashMap<>();
+//    map.put("key", "value");
+//    map.put("key1", "value2");
+//
+//    Logger.d(map);
 
 
   }
