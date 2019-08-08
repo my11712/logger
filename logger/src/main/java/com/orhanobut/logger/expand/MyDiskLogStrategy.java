@@ -12,12 +12,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 /**
  * Created by  Hongqizhi on 2018/4/24.
+ * modify by  Hongqizhi on 2019/08/08.
  */
 
 public class MyDiskLogStrategy implements LogStrategy {
@@ -63,7 +65,7 @@ public class MyDiskLogStrategy implements LogStrategy {
             try {
                 File logFile = getLogFile(folder, getFileName());
                 fileOutputStream = new FileOutputStream(logFile, true);
-                outputStreamWriter = new OutputStreamWriter(fileOutputStream, "GBK");
+                outputStreamWriter = new OutputStreamWriter(fileOutputStream, Charset.forName("UTF-8"));
                 // 追记模式
                 bw = new BufferedWriter(outputStreamWriter);
                 bw.newLine();
@@ -87,17 +89,7 @@ public class MyDiskLogStrategy implements LogStrategy {
         }
 
 
-        /**
-         * This is always called on a single background thread.
-         * Implementing classes must ONLY write to the fileWriter and nothing more.
-         * The abstract class takes care of everything else including close the stream and catching IOException
-         *
-         * @param fileWriter an instance of FileWriter already initialised to the correct file
-         */
-        private void writeLog(BufferedWriter fileWriter, String content) throws IOException {
-            fileWriter.newLine();
-            fileWriter.append(content);
-        }
+
 
         private File getLogFile(String folderName, String fileName) {
             //获取日志文件,如果文件不存在,就创建,如果文件的大小大于maxFileSize,则创建新的日志文件
@@ -110,11 +102,11 @@ public class MyDiskLogStrategy implements LogStrategy {
             File newFile;
             File existingFile = null;
 
-            newFile = new File(folder, String.format("%s_%s.csv", fileName, newFileCount));
+            newFile = new File(folder, String.format(Locale.getDefault(),"%s_%d.csv", fileName, newFileCount));
             while (newFile.exists()) {
                 existingFile = newFile;
                 newFileCount++;
-                newFile = new File(folder, String.format("%s_%s.csv", fileName, newFileCount));
+                newFile = new File(folder, String.format(Locale.getDefault(),"%s_%d.csv", fileName, newFileCount));
             }
 
             if (existingFile != null) {

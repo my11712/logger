@@ -11,14 +11,14 @@ import static com.orhanobut.logger.Utils.checkNotNull;
  */
 public class DiskLogAdapter implements LogAdapter {
 
-  @NonNull private final FormatStrategy formatStrategy;
+   private final FormatStrategy formatStrategy;
 
   public DiskLogAdapter() {
     formatStrategy = CsvFormatStrategy.newBuilder().build();
   }
 
-  public DiskLogAdapter(@NonNull FormatStrategy formatStrategy) {
-    this.formatStrategy = checkNotNull(formatStrategy);
+  public DiskLogAdapter( FormatStrategy formatStrategy) {
+    this.formatStrategy =formatStrategy;
   }
 
   @Override public boolean isLoggable(int priority, @Nullable String tag) {
@@ -26,6 +26,6 @@ public class DiskLogAdapter implements LogAdapter {
   }
 
   @Override public void log(int priority, @Nullable String tag, @NonNull String message) {
-    formatStrategy.log(priority, tag, message);
+    if(formatStrategy!=null)formatStrategy.log(priority, tag, message);
   }
 }

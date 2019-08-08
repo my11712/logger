@@ -31,44 +31,35 @@ public class MainActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     checkPermission();
-    Log.d("Tag", "I'm a log which you don't see easily, hehe");
-    Log.d("json content", "{ \"key\": 3, \n \"value\": something}");
-    Log.d("error", "There is a crash somewhere or any warning");
-
-    Logger.addLogAdapter(new AndroidLogAdapter());
-    Logger.d("message");
-
-    Logger.clearLogAdapters();
-
-
-    FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
-        .showThreadInfo(false)  // (Optional) Whether to show thread info or not. Default true
-        .methodCount(0)         // (Optional) How many method line to show. Default 2
-        .methodOffset(3)        // (Optional) Skips some method invokes in stack trace. Default 5
-//        .logStrategy(customLog) // (Optional) Changes the log strategy to print out. Default LogCat
-        .tag("My custom tag")   // (Optional) Custom tag for each log. Default PRETTY_LOGGER
-        .build();
-
-    Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
-
-    Logger.addLogAdapter(new AndroidLogAdapter() {
-      @Override public boolean isLoggable(int priority, String tag) {
-        return BuildConfig.DEBUG;
-      }
-    });
 
 
 
 
-    Logger.w("no thread info and only 1 method");
 
-    Logger.clearLogAdapters();
-    formatStrategy = PrettyFormatStrategy.newBuilder()
-        .showThreadInfo(false)
-        .methodCount(0)
-        .build();
 
-    Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
+
+
+
+
+
+
+    //自定义的日志存储,默认储存在/sdcard/Log文件夹,默认最大储存60个日志文件，自动切换日志文件名称
+    MyDiskCsvFormatStrategy myDiskLogStrategy = MyDiskCsvFormatStrategy.newBuilder()
+            .tag("APP")
+            .setLogPath(Environment.getExternalStorageDirectory().getPath()+File.separator+"11")//设置日志存储的文件夹
+            .setLogFileMax(5)//设置日志文件最大存储的个数
+            .build();
+    Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
+
+
+    Logger.d("写入sdcard");
+    Logger.d("测试-------------------");
+
+
+
+    Logger.w("1111111111111111111111111111");
+    Logger.wtf("22222222222222222222222222");
+
     Logger.i("no thread info and method info");
 
     Logger.t("tag").e("Custom tag for only one use");
@@ -83,30 +74,7 @@ public class MainActivity extends Activity {
 
     Logger.d(map);
 
-    Logger.clearLogAdapters();
-    formatStrategy = PrettyFormatStrategy.newBuilder()
-        .showThreadInfo(false)
-        .methodCount(0)
-        .tag("MyTag")
-        .build();
-    Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 
-    Logger.w("my log message with my tag");
-
-    //默认日志储存
-      Logger.addLogAdapter(new DiskLogAdapter());
-
-    //自定义的日志存储,默认储存在/sdcard/JYT/Log文件夹,默认最大储存60个日志文件，自动切换日志文件名称
-    MyDiskCsvFormatStrategy myDiskLogStrategy = MyDiskCsvFormatStrategy.newBuilder()
-            .tag("APP")
-            .setLogPath(Environment.getExternalStorageDirectory().getPath()+File.separator+"11")//设置日志存储的文件夹
-            .setLogFileMax(30)//设置日志文件最大存储的个数
-            .build();
-    Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
-
-
-    Logger.e("写入sdcard");
-    Logger.e("测试-------------------");
   }
 
   private static final int REQUEST_EXTERNAL_STORAGE = 1;

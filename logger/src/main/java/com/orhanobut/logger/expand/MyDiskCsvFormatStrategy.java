@@ -3,6 +3,7 @@ package com.orhanobut.logger.expand;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.orhanobut.logger.DiskLogStrategy;
@@ -48,7 +49,7 @@ public class MyDiskCsvFormatStrategy implements FormatStrategy {
         return new Builder();
     }
 
-    static String logLevel(int value) {
+    private static String logLevel(int value) {
         switch (value) {
             case VERBOSE:
                 return "VERBOSE";
@@ -68,7 +69,7 @@ public class MyDiskCsvFormatStrategy implements FormatStrategy {
     }
 
     @Override
-    public void log(int priority, String onceOnlyTag, String message) {
+    public void log(int priority, String onceOnlyTag, @NonNull String message) {
         String tag = formatTag(onceOnlyTag);
 
         date.setTime(System.currentTimeMillis());
@@ -109,7 +110,7 @@ public class MyDiskCsvFormatStrategy implements FormatStrategy {
     }
 
     public static final class Builder {
-        private static final int MAX_BYTES = 2 * 1024 * 1024; // 2M  averages to a 4000 lines per file
+        private static final int MAX_BYTES = 20 * 1024 * 1024; // 20M  averages to a 4000 lines per file
 
         Date date;
         SimpleDateFormat dateFormat;
@@ -141,6 +142,11 @@ public class MyDiskCsvFormatStrategy implements FormatStrategy {
             return this;
         }
 
+        /**
+         * 日志记录的时间格式
+         * @param val
+         * @return
+         */
         public Builder dateFormat(SimpleDateFormat val) {
             dateFormat = val;
             return this;
@@ -161,7 +167,7 @@ public class MyDiskCsvFormatStrategy implements FormatStrategy {
                 date = new Date();
             }
             if (dateFormat == null) {
-                dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault());
+                dateFormat = new SimpleDateFormat("MM.dd HH:mm:ss", Locale.getDefault());
             }
             if (logStrategy == null) {
                 HandlerThread ht = new HandlerThread("AndroidFileLogger." + diskPath);
@@ -170,16 +176,22 @@ public class MyDiskCsvFormatStrategy implements FormatStrategy {
                 logStrategy = new DiskLogStrategy(handler);
             }
             //删除多余的日志文件
-            File file = new File(diskPath);
-            if (file.exists() && file.list().length > maxFileNum) {
-                String[] fileNames = file.list();
-                Arrays.sort(fileNames, new CompratorByLastModified());
-                for (int i = 0; i < fileNames.length - maxFileNum; i++) {
-                    File mFile = new File(file, fileNames[i]);
-                    mFile.delete();
+            try {
+                File file = new File(diskPath);
+                if (file.exists() && file.list().length > maxFileNum) {
+                    String[] fileNames = file.list();
+                    Arrays.sort(fileNames, new CompratorByLastModified());
+                    for (int i = 0; i < fileNames.length - maxFileNum; i++) {
+                        File mFile = new File(file, fileNames[i]);
+                        mFile.delete();
+                    }
                 }
+                return new MyDiskCsvFormatStrategy(this);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
             }
-            return new MyDiskCsvFormatStrategy(this);
+
         }
     }
 }

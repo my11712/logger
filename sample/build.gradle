@@ -2,21 +2,18 @@ apply plugin: 'com.android.application'
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
-  buildToolsVersion rootProject.ext.buildToolsVersion
 
   defaultConfig {
     applicationId "com.orhanobut.sample"
-    minSdkVersion 25
-    targetSdkVersion 28
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
     versionName "1.0"
-
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
   }
 }
 
 dependencies {
   implementation project(':logger')
-  implementation 'com.android.support:support-v4:27.1.1'
+  implementation rootProject.ext.deps.support
 }
