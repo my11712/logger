@@ -11,9 +11,7 @@
             .build();
     Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
 ```
-
-### Logger
-Simple, pretty and powerful logger for android
+ 
 
 ### Setup
 Download
@@ -42,7 +40,8 @@ Logger.d("hello");
 <img src='https://github.com/orhanobut/logger/blob/master/art/logger_output.png'/>
 
  
-### Advanced
+### 初始化
+#### 1、配置Logcat打印日志
 ```java
 FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
   .showThreadInfo(false)  // (可选)是否打印线程信息,默认打印
@@ -57,7 +56,7 @@ Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 
  
 
-### 保存日志到文件
+#### 2、保存日志到文件
 ```java
 //普通的日志打印,只保存在一个日志文件里
 Logger.addLogAdapter(new DiskLogAdapter());
@@ -72,8 +71,8 @@ Logger.addLogAdapter(new DiskLogAdapter());
     Logger.addLogAdapter(new DiskLogAdapter(myDiskLogStrategy));
 ```
   
- ### Loggable
-检查是否应打印日志
+ ####   3、设置打印日志打印级别
+ 
 如果要隐藏或者不打印日志, override `isLoggable` 方法. 
 返回 `true` 表示打印日志, 返回`false` 不打印日志.
 ```java
@@ -84,7 +83,9 @@ Logger.addLogAdapter(new AndroidLogAdapter() {
 });
 ```
 
-### Options
+### 4、打印日志
+ 
+ 
 ```java
 Logger.d("debug");
 Logger.e("error");
