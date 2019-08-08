@@ -27,7 +27,7 @@ Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 
  
 
-#### 2、配置日志到文件
+#### 2、配置保存日志到文件
 ```java
  MyDiskCsvFormatStrategy myDiskLogStrategy = MyDiskCsvFormatStrategy.newBuilder()
             .tag("APP")
