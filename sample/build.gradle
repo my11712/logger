@@ -14,6 +14,7 @@ android {
 }
 
 dependencies {
-  implementation project(':logger')
+//  implementation project(':logger')
+  implementation 'com.github.my11712:logger:3.0.2'
   implementation rootProject.ext.deps.support
 }
